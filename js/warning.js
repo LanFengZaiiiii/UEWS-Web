@@ -225,7 +225,7 @@ function nsspe() //Voronoi
 
 function icl() //ICL地震预警网
 {
-    $.getJSON("https://mobile-new.chinaeew.cn/v1/earlywarnings?start_at=&updates=" + Date.now(), //https://mobile-new.chinaeew.cn/v1/earlywarnings?start_at=&updates=
+    $.getJSON("https://mobile-new.chinaeew.cn/v1/earlywarnings?updates=0&start_at=1" + Date.now(), //https://mobile-new.chinaeew.cn/v1/earlywarnings?start_at=&updates=
         function (json) {
             iclLat = json.data[0].latitude;
             icllastId = json.data[0].eventId;
@@ -246,9 +246,9 @@ function icl() //ICL地震预警网
                 if (localInt >= minint)
                 {
                     if(iclarrivetime - (currentTimeStamp - iclStartAt) <= 0)
-                        sendNotification("地震预警(icl) 第" + iclUpdates + "报", "本地烈度达预警阈值, 已抵达, 注意避险!"); //发布通知
+                        sendNotification("地震预警(ICL) 第" + iclUpdates + "报", "本地烈度达预警阈值, 已抵达, 注意避险!"); //发布通知
                     else
-                        sendNotification("地震预警(icl) 第" + iclUpdates + "报", "本地烈度达预警阈值, " + Math.round(iclarrivetime - (currentTimeStamp - iclStartAt) / 1000) + "s 后抵达, 注意避险!"); //发布通知
+                        sendNotification("地震预警(ICL) 第" + iclUpdates + "报", "本地烈度达预警阈值, " + Math.round(iclarrivetime - (currentTimeStamp - iclStartAt) / 1000) + "s 后抵达, 注意避险!"); //发布通知
                 }
                     
                 iclcancel = false;
